@@ -1,0 +1,19 @@
+{
+  "name": "template-typescript-react-with-babel",
+  "version": "1.0.0",
+  "description": "base project setting with React,Typescript,Webpack and Babel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YeThor/template-typescript-react-with-babel.git"
+  },
+  "author": "Yesol Kim (kysloves@naver.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YeThor/template-typescript-react-with-babel/issues"
+  },
+  "homepage": "https://github.com/YeThor/template-typescript-react-with-babel#readme"
+}
