@@ -2,6 +2,8 @@
 
 create React &amp; Typescript project with babel
 
+- `react` : 컴포넌트 기반으로 UI를 그리는 자바스크립트 라이브러리
+- `react-dom` : 리액트를 웹 브라우저 환경에서 쓰기 위한 관련(ex. DOM) 메소드가 포함된 패키지
 - 번들러
   - `webpack` : 의존성 그래프를 이용하여 소스 코드를 n개의 파일로 묶어내는 정적 모듈 번들러
   - `webpack-cli`
