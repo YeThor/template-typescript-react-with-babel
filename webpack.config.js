@@ -32,4 +32,7 @@ module.exports = {
       directory: path.resolve(__dirname, "./dist"),
     },
   },
+  performance: {
+    hints: process.env.NODE_ENV === "production" ? "warning" : false,
+  },
 };
