@@ -1,6 +1,10 @@
 # template-typescript-react-with-babel
 
-create React &amp; Typescript project with babel
+Babel과 Webpack으로 구성된 TypeScript & React 프로젝트 개발환경 템플릿 (feat. ESLint, Prettier)
+
+코드 작성은 TypeScript와 React로, 번들 파일은 Webpack을 통해 빌드한다. 로컬 환경에서의 HMR을 지원하며, 구형 브라우저 지원을 위한 최신 문법 변환은 Babel을 이용한다. ts-loader를 쓰지 않는 대신, Babel이 코드를 컴파일하기 전에 `tsconfig.json`에 정의된 설정에 맞춰 타입 체크를 먼저 수행하게끔 한다.
+
+## 설치된 모듈
 
 - `react` : 컴포넌트 기반으로 UI를 그리는 자바스크립트 라이브러리
 - `react-dom` : 리액트를 웹 브라우저 환경에서 쓰기 위한 관련(ex. DOM) 메소드가 포함된 패키지
