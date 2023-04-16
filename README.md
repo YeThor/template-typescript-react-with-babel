@@ -14,7 +14,7 @@ create React &amp; Typescript project with babel
   - `@babel/plugin-transform-react-display-name` : React.createClass 호출시 `displayName` 속성을 추가함
     - ```js
       var bar = createReactClass({
-        displayName: "bar",
+        displayName: 'bar',
       });
       ```
 
@@ -34,3 +34,4 @@ create React &amp; Typescript project with babel
     - 내부적으로 `webpack-dev-middleware`를 사용하는데, 이 미들웨어는 파일을 디스크를 직접 쓰지 않고 메모리 상에서 다룬다. HMR (Hot Module Reload)를 지원한다.
 - `eslint`: 문법 실수를 줄이기 위해 사용하는 린트 툴
 - `eslint-config-react-app` : CRA(create react app)에서 쓰는 ESLint 설정. 원래는 airbnb style이 많이 쓰였으나 2022년 8월경 `@eslint/config`에서 제거됨
+- `prettier` : 일관성있게 코드 스타일을 유지할 수 있게 해주는 툴
