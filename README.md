@@ -7,9 +7,8 @@ create React &amp; Typescript project with babel
 - `@babel/core` : 바벨의 코어 라이브러리
   - 바벨: 아직 구형 브라우저에서 지원하지 않는 최신 문법 코드를 구형 브라우저에서 사용가능한 코드로 변환시켜주는 트랜스파일러
 - `babel-loader` : 웹팩이 파일을 번들링하는 과정에서 특정 파일에 대해 바벨을 적용하기 위해 필요한 로더
-- `@babel/preset-react` :
+- `@babel/preset-react` : 리액트와 바벨을 함께 사용하기 위한 프리셋. 다음 플러그인을 포함하고 있음 (development 환경에서는 두가지 플러그인이 추가로 포함되나 이 글에서는 다루지 않음)
 
-  - 아래 3가지 플러그인을 포함하고 있음 (development 환경에서는 두가지 플러그인이 추가로 포함되나 이 글에서는 다루지 않음)
   - `@babel/plugin-syntax-jsx` : 바벨이 jsx 문법을 파싱할지 말지 유무를 결정함. jsx 문법으로 코드를 변환하는 것은 `plugin-transform-react-jsx`의 몫
   - `@babel/plugin-transform-react-jsx` : 리액트 jsx 문법을 어떻게 변환할지 관여하는 플러그인
   - `@babel/plugin-transform-react-display-name` : React.createClass 호출시 `displayName` 속성을 추가함
@@ -24,6 +23,8 @@ create React &amp; Typescript project with babel
   - `useBuiltIns` 옵션이 `usage`나 `entry`라면 `@babel/preset-env`는 `core-js` 모듈에 대한 직접적인 참조를 추가한다. 즉, `core-js` 모듈이 resolve되고 접근 가능한 상태가 된다.
   - `@babel/polyfill`은 7.4.0 이후로 deprecated 되었으므로 `corejs` 옵션을 통해 직접 `core-js` 모듈을 추가하는 것을 추천함
 - `core-js` : 최신 ECMAScript 문법에 대한 폴리필을 포함하고 있으며 전역 네임스페이스 오염없이 사용할 수 있는 라이브러리
+- `@babel/preset-typescript` : 타입스크립트와 바벨을 함께 사용하기 위한 프리셋. 이 과정에서 타입 선언이 제거됨. 다음 플러그인을 포함하고 있음
+  - `@babel/plugin-transform-typescript`: 타입스크립트 문법 지원. 타입스크립트 only 문법(ex. 타입선언)만을 지원하므로, JS와 TS 양측에서 지원하는 문법(ex. optional chaining)은 `preset-env`의 몫으로 넘기는 것을 추천함
 - 번들러
   - `webpack` : 의존성 그래프를 이용하여 소스 코드를 n개의 파일로 묶어내는 정적 모듈 번들러
   - `webpack-cli`
