@@ -32,3 +32,5 @@ create React &amp; Typescript project with babel
     - `webpack serve`, `webpack build`, `webpack --mode=production` 등을 사용할 수 있음
   - `webpack-dev-server` : 라이브 리로딩을 지원하는 개발용 웹서버
     - 내부적으로 `webpack-dev-middleware`를 사용하는데, 이 미들웨어는 파일을 디스크를 직접 쓰지 않고 메모리 상에서 다룬다. HMR (Hot Module Reload)를 지원한다.
+- `eslint`: 문법 실수를 줄이기 위해 사용하는 린트 툴
+- `eslint-config-react-app` : CRA(create react app)에서 쓰는 ESLint 설정. 원래는 airbnb style이 많이 쓰였으나 2022년 8월경 `@eslint/config`에서 제거됨
