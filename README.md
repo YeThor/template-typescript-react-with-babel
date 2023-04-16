@@ -35,3 +35,4 @@ create React &amp; Typescript project with babel
 - `eslint`: 문법 실수를 줄이기 위해 사용하는 린트 툴
 - `eslint-config-react-app` : CRA(create react app)에서 쓰는 ESLint 설정. 원래는 airbnb style이 많이 쓰였으나 2022년 8월경 `@eslint/config`에서 제거됨
 - `prettier` : 일관성있게 코드 스타일을 유지할 수 있게 해주는 툴
+- `eslint-config-prettier` : ESLint와 Prettier가 서로 충돌하지 않게 함. Prettier와 컨플릭트가 일어날 수 있는 모든 규칙을 끈다
