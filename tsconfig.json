@@ -1,0 +1,20 @@
+{
+  /* only used for type checking because Babel transforms typescript instead of tsc in this project */
+  "compilerOptions": {
+    "target": "ESNext",
+    "jsx": "react",
+    "noEmit": true,
+    "sourceMap": true,
+
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true
+  },
+  "include": ["src"]
+}

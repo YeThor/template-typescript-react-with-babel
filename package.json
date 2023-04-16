@@ -4,8 +4,9 @@
   "description": "base project setting with React,Typescript,Webpack and Babel",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack serve",
-    "build": "webpack --mode production --progress",
+    "dev": "npm run tscheck && webpack serve",
+    "tscheck": "tsc",
+    "build": "npm run tscheck && webpack --mode production --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
