@@ -1,47 +1,53 @@
 # template-typescript-react-with-babel
 
-Babel과 Webpack으로 구성된 TypeScript & React 프로젝트 개발환경 템플릿 (feat. ESLint, Prettier)
+The basic setup template for TypeScript & React with Webpack and Babel (feat. ESLint, Prettier)
 
-코드 작성은 TypeScript와 React로, 번들 파일은 Webpack을 통해 빌드한다. 로컬 환경에서의 HMR을 지원하며, 구형 브라우저 지원을 위한 최신 문법 변환은 Babel을 이용한다. ts-loader를 쓰지 않는 대신, Babel이 코드를 컴파일하기 전에 `tsconfig.json`에 정의된 설정에 맞춰 타입 체크를 먼저 수행하게끔 한다.
+- How to write code? - **TypeScript, React**
+- How to bundle code? - **Webpack**
+  - Support for HMR (Hot module reloading)
+- How to transform the latest JavaScript syntax for old browsers? - **Babel**
+  - Instead of using `ts-loader`, this template uses Babel to transform ES6 syntax
+  - Check type with `tsc` before compiling(transpiling) code
+    - Modify `tsconfig.json` if you want to change type-checking rules
 
-## 설치된 모듈
+## What modules are installed?
 
-- `react` : 컴포넌트 기반으로 UI를 그리는 자바스크립트 라이브러리
-- `react-dom` : 리액트를 웹 브라우저 환경에서 쓰기 위한 관련(ex. DOM) 메소드가 포함된 패키지
-- `@babel/core` : 바벨의 코어 라이브러리
-  - 바벨: 아직 구형 브라우저에서 지원하지 않는 최신 문법 코드를 구형 브라우저에서 사용가능한 코드로 변환시켜주는 트랜스파일러
-- `babel-loader` : 웹팩이 파일을 번들링하는 과정에서 특정 파일에 대해 바벨을 적용하기 위해 필요한 로더
-- `@babel/preset-react` : 리액트와 바벨을 함께 사용하기 위한 프리셋. 다음 플러그인을 포함하고 있음 (development 환경에서는 두가지 플러그인이 추가로 포함되나 이 글에서는 다루지 않음)
+- `react` : JavaScript library for building user interface
+- `react-dom` : Package that provides DOM-specific methods when you use React
+- `@babel/core` : The core library of Babel
+  - Babel is the compiler that transforms the latest(ex. ES6) JavaScript syntax for old browsers
+- `babel-loader` : Babel loader for Webpack. If you want to use Babel with Webpack, this loader is necessary
+- `@babel/preset-react` : Preset for using React and Babel together. It contains plugins below (there are two more plugins in development environment, but the description would be omitted here)
 
-  - `@babel/plugin-syntax-jsx` : 바벨이 jsx 문법을 파싱할지 말지 유무를 결정함. jsx 문법으로 코드를 변환하는 것은 `plugin-transform-react-jsx`의 몫
-  - `@babel/plugin-transform-react-jsx` : 리액트 jsx 문법을 어떻게 변환할지 관여하는 플러그인
-  - `@babel/plugin-transform-react-display-name` : React.createClass 호출시 `displayName` 속성을 추가함
+  - `@babel/plugin-syntax-jsx` : This plugin enables Babel to parse JSX syntax. It doesn't transform the syntax by itself. Transforming the codes in detail would be handled by `@babel/plugin-transform-react-jsx`
+  - `@babel/plugin-transform-react-jsx` : The Plugin that transforms JSX syntax into React function calls (ex. jsxs, React.createElement, ...)
+  - `@babel/plugin-transform-react-display-name` : It adds `displayName` property when `React.createClass` is called
     - ```js
       var bar = createReactClass({
         displayName: 'bar',
       });
       ```
 
-- `@babel/preset-env` : 최신 자바스크립트 문법을 타겟 환경에서 구동가능한 문법으로 변환시켜주는 프리셋
-  - Stage 3 이전의 문법은 지원하지 않음. 이 시점에서는 해당 문법을 구현한 브라우저가 없기 때문. `shippedProposals` 옵션을 켜두면 일부 브라우저가 구현한 Stage 3 Proposal 문법을 수동으로 포함시킬 수 있음.
-  - `useBuiltIns` 옵션이 `usage`나 `entry`라면 `@babel/preset-env`는 `core-js` 모듈에 대한 직접적인 참조를 추가한다. 즉, `core-js` 모듈이 resolve되고 접근 가능한 상태가 된다.
-  - `@babel/polyfill`은 7.4.0 이후로 deprecated 되었으므로 `corejs` 옵션을 통해 직접 `core-js` 모듈을 추가하는 것을 추천함
-- `core-js` : 최신 ECMAScript 문법에 대한 폴리필을 포함하고 있으며 전역 네임스페이스 오염없이 사용할 수 있는 라이브러리
-- `@babel/preset-typescript` : 타입스크립트와 바벨을 함께 사용하기 위한 프리셋. 이 과정에서 타입 선언이 제거됨. 다음 플러그인을 포함하고 있음
-  - `@babel/plugin-transform-typescript`: 타입스크립트 문법 지원. 타입스크립트 only 문법(ex. 타입선언)만을 지원하므로, JS와 TS 양측에서 지원하는 문법(ex. optional chaining)은 `preset-env`의 몫으로 넘기는 것을 추천함
-- 번들러
-  - `webpack` : 의존성 그래프를 이용하여 소스 코드를 n개의 파일로 묶어내는 정적 모듈 번들러
-  - `webpack-cli`
-    - CLI(Command Line Interface)에서 유용하게 쓸 수 있는 웹팩 관련 커맨드 묶음
-    - `webpack serve`, `webpack build`, `webpack --mode=production` 등을 사용할 수 있음
-  - `webpack-dev-server` : 라이브 리로딩을 지원하는 개발용 웹서버
-    - 내부적으로 `webpack-dev-middleware`를 사용하는데, 이 미들웨어는 파일을 디스크를 직접 쓰지 않고 메모리 상에서 다룬다. HMR (Hot Module Reload)를 지원한다.
-- `eslint`: 문법 실수를 줄이기 위해 사용하는 린트 툴
-- `eslint-config-react-app` : CRA(create react app)에서 쓰는 ESLint 설정. 원래는 airbnb style이 많이 쓰였으나 2022년 8월경 `@eslint/config`에서 제거됨
-- `prettier` : 일관성있게 코드 스타일을 유지할 수 있게 해주는 툴
+- `@babel/preset-env` : The preset that transforms the latest JavaScript syntax to compatiable syntax for old browsers
+  - It doesn't support any JavaScript syntax proposals less than Stage 3 cause no browsers implement the feature at that stage. If the option `shippedProposals` is turned on, Stage 3 proposals that some browsers have already implemented will be included
+  - If the option `useBuiltIns` is `usage` or `entry`, the plugin adds direct references to `core-js` modules
+  - `@babel/polyfill` was deprecated since version `7.4.0`, so it is recommended to add `core-js` modules directly using the option called `corejs`
+- `core-js` : The library that includes polyfills for the latest ECMAScript syntax. You can load only required features or use it without global namespace pollution
+- `@babel/preset-typescript` : This preset is recommended when you use Babel and TypeScript together. It contains the plugin below
 
-  - VS Code에서 자동 포매팅을 하려면 다음 조건을 만족해야한다 - 익스텐션 설치: ESLint, Prettier - IDE 설정
-    ```json
+  - `@babel/plugin-transform-typescript`: Supports TypeScript only syntax. It means that TS only syntax like type definition would be transformed (ex. The type definition would be removed) by this plugin, but the syntax that both JavasScript and TypeScript supports is up to the plugin like `preset-env`
+
+- `webpack` : The static module bundler for modern JavaScript application using dependency graph
+- `webpack-cli` : The set of commands that helps you to configure webpack in CLI (Command Line Interface)
+  - You can use commands like `webpack serve`, `webpack build`, `webpack --mode=production`, etc.
+- `webpack-dev-server` : The development server that provides HMR (Hot Module Reloading)
+  - It uses `webpack-dev-middleware` internally, so the files are handled in memory. No files are written to disk
+- `eslint`: A linting tool that helps finding and fixing problems with your JavaScript code
+- `eslint-config-react-app` : The ESLint configuration used by CRA (`create-react-app`). The AirBnB style configuration used to be popular in the past, but it was removed from `@eslint/config` since August 2022
+- `prettier` : The code formatter that keeps code style consistent
+
+  - To use auto formatting in Visual Studio Code, You have to install the extensions(ESLint, Prettier) and configure IDE settings like this
+  - ```js
     // .vscode/settings.json
     {
       "editor.codeActionsOnSave": {
@@ -52,4 +58,8 @@ Babel과 Webpack으로 구성된 TypeScript & React 프로젝트 개발환경 �
     }
     ```
 
-- `eslint-config-prettier` : ESLint와 Prettier가 서로 충돌하지 않게 함. Prettier와 컨플릭트가 일어날 수 있는 모든 규칙을 끈다
+- `eslint-config-prettier` : It prevents the conflict between ESLint and Prettier. It is achieved by turning off all rules that might conflict with Prettier
+
+## LICENSE
+
+[MIT License](./LICENSE)
