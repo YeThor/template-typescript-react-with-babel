@@ -43,7 +43,7 @@ The basic setup template for TypeScript & React with Webpack and Babel (feat. ES
 - `webpack-dev-server` : The development server that provides HMR (Hot Module Reloading)
   - It uses `webpack-dev-middleware` internally, so the files are handled in memory. No files are written to disk
 - `eslint`: A linting tool that helps finding and fixing problems with your JavaScript code
-- `eslint-config-react-app` : The ESLint configuration used by CRA (`create-react-app`). The AirBnB style configuration used to be popular in the past, but it was removed from `@eslint/config` since August 2022
+- `eslint-config-react-app` : The ESLint configuration used by CRA (`create-react-app`). The AirBnB style configuration used to be popular in the past, but it was [removed](https://github.com/eslint/create-config/releases/tag/v0.3.1) from `@eslint/config` since August 2022 because it didn't support TypeScript officially.
 - `prettier` : The code formatter that keeps code style consistent
 
   - To use auto formatting in Visual Studio Code, You have to install the extensions(ESLint, Prettier) and configure IDE settings like this
