@@ -32,6 +32,7 @@ The basic setup template for TypeScript & React with Webpack and Babel (feat. ES
   - It doesn't support any JavaScript syntax proposals less than Stage 3 cause no browsers implement the feature at that stage. If the option `shippedProposals` is turned on, Stage 3 proposals that some browsers have already implemented will be included
   - If the option `useBuiltIns` is `usage` or `entry`, the plugin adds direct references to `core-js` modules
   - `@babel/polyfill` was deprecated since version `7.4.0`, so it is recommended to add `core-js` modules directly using the option called `corejs`
+  - If your project is a library and you want to avoid the global namespace pollution, consider to use `@babel/plugin-transform-runtime` instead of `@babel/preset-env`'s `core-js` option.
 - `core-js` : The library that includes polyfills for the latest ECMAScript syntax. You can load only required features or use it without global namespace pollution
 - `@babel/preset-typescript` : This preset is recommended when you use Babel and TypeScript together. It contains the plugin below
 
